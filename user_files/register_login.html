@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deplyser-Register/Login</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/onlyD.png">
+</head>
+<script src="../bootstrap/css/bootstrap.css"></script>
+<link rel="stylesheet" media="screen" type="text/css" href="../js/datepicker.js"/>
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/w3.css">
+<link rel="stylesheet" type="text/css" href="../library/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="register_login.css">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<script src="../js/jquery-1.12.4.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../bootstrap/css/bootstrap.css"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/w3.css">
+<link rel="stylesheet" type="text/css" href="register_login.css">
+
+<body style=" background-color:#13232F" onload="hidefield()">
+<a href="../index.html"> <i class="fa fa-4x fa-home " style="color: white" title="Go to Home Page"></i></a>
+<img src="../images/demologo.png"
+     style="float: right;  height:167px;width:237px;">
+
+<div class="form">
+
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="signup">
+            <h1>Register New User</h1>
+            <center>
+                <p style="font-size: 25px;color: white">DEPLYSER</p>
+                <small style="color: white;font-size: 20px;">(Department Record Analyser)</small>
+            </center>
+            <br>
+
+            <form action="signup_process.php" method="post">
+
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <input type="text" name="uid" placeholder="ID" required autocomplete="off"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="text" name="uname" placeholder="Name" required autocomplete="off"/>
+                    </div>
+                </div>
+                <!--
+                                <div class="field-wrap">
+                                    <input type="date" name="udate" placeholder="DOB" />
+                                </div>
+                -->
+                <div class="field-wrap">
+                    <input type="email" name="uemail" placeholder="E-mail" required autocomplete="off"/>
+                </div>
+
+
+                <div class="field-wrap">
+                    <input type="tel" name="umobile" placeholder="Mobile" id="mob" required autocomplete="off"
+                           onkeyup="checkmob();return false"/>
+                    <span id="cm"></span>
+                </div>
+
+
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <input type="password" name="upass" placeholder="Create Password" id="upass1" required
+                               autocomplete="off"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="password" name="ucpass" placeholder="Re-Enter Password" id="ucpass1" required
+                               autocomplete="off" onkeyup="checkPass();return false;"/>
+                        <span id="confirmMessage" class="confirmMessage"></span>
+                    </div>
+                </div>
+                <div class="top-row">
+                    <div class="field-wrap" style="color:#13232F">
+                        <select class="well well-sm col-lg-offset-2" style="width: 120px;color:#13232F" name="gender">
+                            <option class="well well-sm" value="male" selected>Male</option>
+                            <option class="well well-sm" value="female">Female</option>
+                            <!--<option class="alert-info badge bg-success" value="others" >Others</option>-->
+                        </select>
+                    </div>
+                    <div class="field-wrap">
+                        <select class=" well well-sm col-lg-offset-6" name="ustatus"
+                                onchange="showfield(this.options[this.selectedIndex].value)">
+                            <option class="well well-sm" value="teacher" name="teacher" selected>Teacher</option>
+                            <option class="well well-sm" value="student" name="student">Student</option>
+                        </select><br><br>
+                    </div>
+                </div>
+                <div class="top-row" style="color: #13232F" id="div1">
+                    <div class="field-wrap">
+                        <input type="text" name="sems" placeholder="Semester">
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="text" name="sect" placeholder="Enter Section(if Any)">
+                    </div>
+                </div>
+
+                <div class="top-row">
+                    <div class="field-wrap" style="color:#13232F">
+                        <select class="well well-sm col-lg-8" style="width: 500px;color: #13232F" name="udepartment">
+                            <option class="well well-sm" value="">Select Department</option>
+                            <option class="well well-sm" value="computer science">Computer Science & Engineering
+                            </option>
+                            <option class="well well-sm" value="information technology">Information Technology</option>
+                            <option class="well well-sm" value="civil engineering">Civil Engineering</option>
+                            <option class="well well-sm" value="mechanical engineering">Mechanical Engineering</option>
+                            <option class="well well-sm" value="electrical engineering">Electrical Engineering</option>
+                            <option class="well well-sm" value="electronics engineering">Electrical & electronics
+                                Engineering
+                            </option>
+                            <option class="well well-sm" value="applied science">Applied Science</option>
+                        </select>
+                    </div>
+                    <!--<div class="field-wrap" style="color:#13232F">
+                        <select class="alert-info badge col-lg-offset-2" style="width: 100px;color:#13232F" name="sems" >
+                            <option class="alert-info badge bg-success" value="teacher">Select Semester</option>
+                            <option class="alert-info badge bg-success" value="teacher">First</option>
+                            <option class="alert-info badge bg-success" value="student">Second</option>
+                            <option class="alert-info badge bg-success" value="teacher">Third</option>
+                            <option class="alert-info badge bg-success" value="student">Fourth</option>
+                            <option class="alert-info badge bg-success" value="teacher">Fifth</option>
+                            <option class="alert-info badge bg-success" value="student">Sixth</option>
+                            <option class="alert-info badge bg-success" value="teacher">Seventh</option>
+                            <option class="alert-info badge bg-success" value="student">Eighth</option>
+                        </select>
+                    </div>-->
+                </div>
+                <br><br>
+
+                <div class="field-wrap">
+                    <button type="submit" name="register" onclick="checkPass2();" class="button button-block">Get
+                        Started
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="login">
+            <h1>Welcome Back!</h1>
+            <center>
+                <p style="font-size: 25px;color: white">DEPLYSER</p>
+                <small style="color: white;font-size: 20px;">(Department Record Analyser)</small>
+            </center>
+            <br>
+
+            <form action="login_process.php" method="post">
+
+                <div class="field-wrap">
+                    <input type="text" placeholder="ID" name="uid" required autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    <input type="password" placeholder="Password" name="upass" required autocomplete="off"/>
+                </div>
+                <p class="forgot"><a href="pass_veri.php" title="Get Your Password">Forgot Password?</a></p>
+
+                <button class="button button-block">Log In</button>
+
+            </form>
+
+        </div>
+
+    </div><!-- tab-content -->
+
+</div> <!-- /form -->
+<script>
+    $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+        var $this = $(this),
+                label = $this.prev('label');
+
+        if (e.type === 'keyup') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.removeClass('highlight');
+            }
+        } else if (e.type === 'focus') {
+
+            if ($this.val() === '') {
+                label.removeClass('highlight');
+            }
+            else if ($this.val() !== '') {
+                label.addClass('highlight');
+            }
+        }
+
+    });
+
+    $('.tab a').on('click', function (e) {
+
+        e.preventDefault();
+
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+
+        target = $(this).attr('href');
+
+        $('.tab-content > div').not(target).hide();
+
+        $(target).fadeIn(600);
+
+    });
+
+</script>
+<!--
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker({
+
+
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2050'
+
+
+        });
+    } );
+</script>
+-->
+<!--
+    <script>
+        $(document).ready(function(){
+            $(":checkbox").wrap("<span style='background-color:whitesmoke'>");
+        });
+    </script>
+-->
+<script>
+    function checkPass() {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('upass1');
+        var pass2 = document.getElementById('ucpass1');
+        //Store the Confimation Message Object ...
+        var message = document.getElementById('confirmMessage');
+        //Set the colors we will be using ...
+        var goodColor = "#179b77";
+        var badColor = "#ff6666";
+        //Compare the values in the password field
+        //and the confirmation field
+        if (pass1.value == pass2.value) {
+            //The passwords match.
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords Match!"
+        } else {
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
+    }
+</script>
+<script>
+    function showfield(name) {
+        if (name == 'student')document.getElementById('div1').style.display = "block";
+        else
+            document.getElementById('div1').style.display = "none";
+    }
+    function hidefield() {
+        document.getElementById('div1').style.display = 'none';
+    }
+
+
+</script>
+<script>
+
+    function checkmob() {
+        var mob1 = document.getElementById('mob').value;
+        var message1 = document.getElementById('cm');
+        if ((mob1.length >= 5 && mob1.length <= 10)) {
+            message1.innerHTML = "<span style='font-size: 20px;color: whitesmoke'>Format is Correct</span>";
+        }
+        else {
+            message1.innerHTML = "<span style='font-size: 20px;color: whitesmoke'>Please Enter 10 Digits Mobile Number<span>";
+        }
+    }
+
+</script>
+</body>
+</html>
